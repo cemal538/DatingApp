@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Http;
 using DatingApp.API.Helpers;
 using AutoMapper;
 
+
 namespace DatingApp.API
 {
     public class Startup
@@ -36,6 +37,7 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -78,6 +80,7 @@ namespace DatingApp.API
 
                     });
                 });
+                //app.UseHsts();
             }
             
 
